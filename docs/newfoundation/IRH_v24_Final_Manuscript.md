@@ -1103,5 +1103,5 @@ The GP equation describes BEC dynamics with self-interaction. In the IRH context
 ---
 
 **Document Version:** IRH v24.0 Final Manuscript  
-**Date:** January 2, 2026  
+**Date:** January 1, 2026  
 **Status:** Complete Theoretical Framework
