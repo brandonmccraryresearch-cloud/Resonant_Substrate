@@ -1,4 +1,4 @@
-
+*NOTE: The 2 manuscripts IRH23.0B.md and IRH23.0A.md that claude was assessing at the begining of the claude conversation have been uploaded to this docs directory for reference*
 
 ### **The Final Meta-Directive for the GitHub Copilot Agent**
 
