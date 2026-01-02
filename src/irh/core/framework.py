@@ -23,6 +23,7 @@ import numpy as np
 @dataclass
 class IRHConstants:
     """Physical and IRH-specific constants"""
+
     # Fundamental constants
     c = 299792458.0  # Speed of light (m/s)
     hbar = 1.054571817e-34  # Reduced Planck constant (J·s)
@@ -80,13 +81,9 @@ class IRH_Framework:
 
     def _initialize_grids(self):
         """Initialize computational grids for 4D field calculations"""
-        self.grid_points = np.linspace(0, 2*np.pi, self.grid_resolution)
+        self.grid_points = np.linspace(0, 2 * np.pi, self.grid_resolution)
 
-    def four_strand_laplacian(
-        self,
-        field: np.ndarray,
-        strand_index: int
-    ) -> np.ndarray:
+    def four_strand_laplacian(self, field: np.ndarray, strand_index: int) -> np.ndarray:
         """
         Calculate the Laplacian operator on the four-strand manifold.
 
@@ -111,27 +108,22 @@ class IRH_Framework:
         conditions appropriate for the SU(2) × U(1) topology.
         """
         # Get strand-specific coupling
-        couplings = [self.constants.g1, self.constants.g2,
-                    self.constants.g3, self.constants.g4]
+        couplings = [self.constants.g1, self.constants.g2, self.constants.g3, self.constants.g4]
         g = couplings[strand_index]
 
         # Compute discrete Laplacian (6-point stencil for 3D)
         laplacian = np.zeros_like(field)
 
         # X-direction
-        laplacian += np.roll(field, 1, axis=0) - 2*field + np.roll(field, -1, axis=0)
+        laplacian += np.roll(field, 1, axis=0) - 2 * field + np.roll(field, -1, axis=0)
         # Y-direction
-        laplacian += np.roll(field, 1, axis=1) - 2*field + np.roll(field, -1, axis=1)
+        laplacian += np.roll(field, 1, axis=1) - 2 * field + np.roll(field, -1, axis=1)
         # Z-direction
-        laplacian += np.roll(field, 1, axis=2) - 2*field + np.roll(field, -1, axis=2)
+        laplacian += np.roll(field, 1, axis=2) - 2 * field + np.roll(field, -1, axis=2)
 
         return g * laplacian
 
-    def cymatic_kernel(
-        self,
-        g_coords: np.ndarray,
-        h_coords: np.ndarray
-    ) -> complex:
+    def cymatic_kernel(self, g_coords: np.ndarray, h_coords: np.ndarray) -> complex:
         """
         Compute the cymatic kernel between two points on the manifold.
 
@@ -196,7 +188,7 @@ class IRH_Framework:
         su2_distance = np.arccos(np.clip(np.abs(inner_prod), -1, 1))
 
         # U(1) part: Phase difference with proper 2π periodicity
-        phase_diff = np.mod(g_u1 - h_u1 + np.pi, 2*np.pi) - np.pi
+        phase_diff = np.mod(g_u1 - h_u1 + np.pi, 2 * np.pi) - np.pi
         u1_distance = np.abs(phase_diff)
 
         # Combined resonance discordance metric (QNCD-inspired)
@@ -204,7 +196,7 @@ class IRH_Framework:
         total_distance = np.sqrt(su2_distance**2 + u1_distance**2)
 
         # Cymatic kernel with Gaussian envelope for resonance decay
-        amplitude = np.exp(-total_distance**2 / 2.0)
+        amplitude = np.exp(-(total_distance**2) / 2.0)
 
         # Phase contribution from U(1) alignment
         phase_contribution = np.exp(1j * phase_diff)
@@ -215,7 +207,7 @@ class IRH_Framework:
         self,
         initial_conditions: Dict[str, np.ndarray],
         max_iterations: int = 1000,
-        tolerance: float = 1e-6
+        tolerance: float = 1e-6,
     ) -> Dict[str, np.ndarray]:
         """
         Solve the coupled master wave equations for all four strands.
@@ -255,10 +247,10 @@ class IRH_Framework:
         References: IRH v21.1 §1.1-1.2, Eq. 1.1-1.4
         """
         fields = {
-            'strand1': initial_conditions['strand1'].copy(),
-            'strand2': initial_conditions['strand2'].copy(),
-            'strand3': initial_conditions['strand3'].copy(),
-            'strand4': initial_conditions['strand4'].copy(),
+            "strand1": initial_conditions["strand1"].copy(),
+            "strand2": initial_conditions["strand2"].copy(),
+            "strand3": initial_conditions["strand3"].copy(),
+            "strand4": initial_conditions["strand4"].copy(),
         }
 
         # Adaptive relaxation parameter (decreases with iterations for stability)
@@ -273,7 +265,7 @@ class IRH_Framework:
                 relaxation = 0.01
 
             # Update each strand
-            for i, strand in enumerate(['strand1', 'strand2', 'strand3', 'strand4']):
+            for i, strand in enumerate(["strand1", "strand2", "strand3", "strand4"]):
                 # Kinetic term: Laplacian on the four-strand manifold
                 laplacian = self.four_strand_laplacian(fields[strand], i)
 
@@ -290,21 +282,25 @@ class IRH_Framework:
                     for iy in range(0, shape[1], max(1, shape[1] // sample_points)):
                         for iz in range(0, shape[2], max(1, shape[2] // sample_points)):
                             # Current point coordinates (simplified mapping to G_inf)
-                            g_coord = np.array([
-                                ix * 2*np.pi / shape[0],
-                                iy * 2*np.pi / shape[1],
-                                iz * 2*np.pi / shape[2],
-                                0.0  # U(1) phase component
-                            ])
+                            g_coord = np.array(
+                                [
+                                    ix * 2 * np.pi / shape[0],
+                                    iy * 2 * np.pi / shape[1],
+                                    iz * 2 * np.pi / shape[2],
+                                    0.0,  # U(1) phase component
+                                ]
+                            )
 
                             # Interaction with other strands
                             local_interaction = 0.0
-                            for other in ['strand1', 'strand2', 'strand3', 'strand4']:
+                            for other in ["strand1", "strand2", "strand3", "strand4"]:
                                 if other != strand:
                                     # Sample other strand at same point
                                     h_coord = g_coord.copy()
                                     kernel_value = self.cymatic_kernel(g_coord, h_coord)
-                                    local_interaction += kernel_value.real * fields[other][ix, iy, iz]
+                                    local_interaction += (
+                                        kernel_value.real * fields[other][ix, iy, iz]
+                                    )
 
                             interaction[ix, iy, iz] = local_interaction
 
@@ -320,8 +316,7 @@ class IRH_Framework:
 
             # Check convergence
             max_change = max(
-                np.max(np.abs(fields[strand] - fields_old[strand]))
-                for strand in fields.keys()
+                np.max(np.abs(fields[strand] - fields_old[strand])) for strand in fields.keys()
             )
 
             if max_change < tolerance:
@@ -374,19 +369,18 @@ class IRH_Framework:
         eta = 0.348
 
         # CKM matrix in Wolfenstein parameterization
-        ckm = np.array([
-            [1 - lambda_w**2/2, lambda_w, A * lambda_w**3 * (rho - 1j*eta)],
-            [-lambda_w, 1 - lambda_w**2/2, A * lambda_w**2],
-            [A * lambda_w**3 * (1 - rho - 1j*eta), -A * lambda_w**2, 1]
-        ], dtype=complex)
+        ckm = np.array(
+            [
+                [1 - lambda_w**2 / 2, lambda_w, A * lambda_w**3 * (rho - 1j * eta)],
+                [-lambda_w, 1 - lambda_w**2 / 2, A * lambda_w**2],
+                [A * lambda_w**3 * (1 - rho - 1j * eta), -A * lambda_w**2, 1],
+            ],
+            dtype=complex,
+        )
 
         return ckm
 
-    def neutrino_oscillations(
-        self,
-        L: float,
-        E: float
-    ) -> Dict[str, float]:
+    def neutrino_oscillations(self, L: float, E: float) -> Dict[str, float]:
         """
         Calculate neutrino oscillation probabilities.
 
@@ -442,9 +436,9 @@ class IRH_Framework:
         phase31 = 1.267 * delta_m31_sq * L / E
 
         # Compute oscillation probabilities (simplified 2-flavor approximation)
-        P_ee = 1 - np.sin(2*theta12)**2 * np.sin(phase21)**2
-        P_emu = np.sin(2*theta12)**2 * np.sin(phase21)**2
-        P_mumu = 1 - np.sin(2*theta23)**2 * np.sin(phase31)**2
+        P_ee = 1 - np.sin(2 * theta12) ** 2 * np.sin(phase21) ** 2
+        P_emu = np.sin(2 * theta12) ** 2 * np.sin(phase21) ** 2
+        P_mumu = 1 - np.sin(2 * theta23) ** 2 * np.sin(phase31) ** 2
 
         # Ensure probabilities are in valid range (handle numerical errors)
         P_ee = np.clip(P_ee, 0.0, 1.0)
@@ -452,17 +446,16 @@ class IRH_Framework:
         P_mumu = np.clip(P_mumu, 0.0, 1.0)
 
         return {
-            'P_ee': float(P_ee),
-            'P_emu': float(P_emu),
-            'P_etau': float(1 - P_ee - P_emu) if P_ee + P_emu <= 1 else 0.0,
-            'P_mumu': float(P_mumu),
-            'P_mutau': float(1 - P_mumu) if P_mumu <= 1 else 0.0,
-            'P_tautau': float(1 - P_mumu) if P_mumu <= 1 else 0.0,
+            "P_ee": float(P_ee),
+            "P_emu": float(P_emu),
+            "P_etau": float(1 - P_ee - P_emu) if P_ee + P_emu <= 1 else 0.0,
+            "P_mumu": float(P_mumu),
+            "P_mutau": float(1 - P_mumu) if P_mumu <= 1 else 0.0,
+            "P_tautau": float(1 - P_mumu) if P_mumu <= 1 else 0.0,
         }
 
     def parameter_optimization(
-        self,
-        experimental_constraints: Dict[str, Tuple[float, float]]
+        self, experimental_constraints: Dict[str, Tuple[float, float]]
     ) -> Dict[str, float]:
         """
         Optimize IRH parameters against experimental constraints.
@@ -493,32 +486,31 @@ class IRH_Framework:
             alpha_EM, alpha_s, ratio = params
 
             # Compare with constraints
-            if 'alpha_EM' in experimental_constraints:
-                target, sigma = experimental_constraints['alpha_EM']
-                cost += ((alpha_EM - target) / sigma)**2
+            if "alpha_EM" in experimental_constraints:
+                target, sigma = experimental_constraints["alpha_EM"]
+                cost += ((alpha_EM - target) / sigma) ** 2
 
-            if 'alpha_s' in experimental_constraints:
-                target, sigma = experimental_constraints['alpha_s']
-                cost += ((alpha_s - target) / sigma)**2
+            if "alpha_s" in experimental_constraints:
+                target, sigma = experimental_constraints["alpha_s"]
+                cost += ((alpha_s - target) / sigma) ** 2
 
-            if 'Omega_DM_Omega_b' in experimental_constraints:
-                target, sigma = experimental_constraints['Omega_DM_Omega_b']
-                cost += ((ratio - target) / sigma)**2
+            if "Omega_DM_Omega_b" in experimental_constraints:
+                target, sigma = experimental_constraints["Omega_DM_Omega_b"]
+                cost += ((ratio - target) / sigma) ** 2
 
             return cost
 
         # Initial guess
-        x0 = [self.constants.alpha_EM, self.constants.alpha_s,
-              self.constants.Omega_DM_Omega_b]
+        x0 = [self.constants.alpha_EM, self.constants.alpha_s, self.constants.Omega_DM_Omega_b]
 
         # Optimize
-        result = minimize(objective, x0, method='Nelder-Mead')
+        result = minimize(objective, x0, method="Nelder-Mead")
 
         return {
-            'alpha_EM': result.x[0],
-            'alpha_s': result.x[1],
-            'Omega_DM_Omega_b': result.x[2],
-            'cost': result.fun
+            "alpha_EM": result.x[0],
+            "alpha_s": result.x[1],
+            "Omega_DM_Omega_b": result.x[2],
+            "cost": result.fun,
         }
 
     def generate_experimental_proposals(self) -> list:
@@ -545,40 +537,40 @@ class IRH_Framework:
         """
         proposals = [
             {
-                'name': 'Precision CKM Matrix Measurements',
-                'description': 'Measure CKM matrix elements to 0.01% precision to test IRH geometric derivation',
-                'discovery_potential': 8.5,
-                'feasibility': 7.0,
-                'cost_estimate': '$50M-$100M',
-                'timeline': '5-10 years'
+                "name": "Precision CKM Matrix Measurements",
+                "description": "Measure CKM matrix elements to 0.01% precision to test IRH geometric derivation",
+                "discovery_potential": 8.5,
+                "feasibility": 7.0,
+                "cost_estimate": "$50M-$100M",
+                "timeline": "5-10 years",
             },
             {
-                'name': 'Long-Baseline Neutrino Oscillations',
-                'description': 'Measure neutrino oscillation parameters to test IRH mass hierarchy predictions',
-                'discovery_potential': 9.0,
-                'feasibility': 8.0,
-                'cost_estimate': '$200M-$500M',
-                'timeline': '10-15 years'
+                "name": "Long-Baseline Neutrino Oscillations",
+                "description": "Measure neutrino oscillation parameters to test IRH mass hierarchy predictions",
+                "discovery_potential": 9.0,
+                "feasibility": 8.0,
+                "cost_estimate": "$200M-$500M",
+                "timeline": "10-15 years",
             },
             {
-                'name': 'Dark Matter Direct Detection',
-                'description': 'Search for dark matter signals consistent with IRH substrate resonances',
-                'discovery_potential': 9.5,
-                'feasibility': 6.0,
-                'cost_estimate': '$100M-$300M',
-                'timeline': '5-15 years'
+                "name": "Dark Matter Direct Detection",
+                "description": "Search for dark matter signals consistent with IRH substrate resonances",
+                "discovery_potential": 9.5,
+                "feasibility": 6.0,
+                "cost_estimate": "$100M-$300M",
+                "timeline": "5-15 years",
             },
             {
-                'name': 'Inflationary Spectrum Measurements',
-                'description': 'Measure CMB power spectrum to test IRH inflationary predictions',
-                'discovery_potential': 8.0,
-                'feasibility': 9.0,
-                'cost_estimate': '$500M-$1B',
-                'timeline': '10-20 years'
-            }
+                "name": "Inflationary Spectrum Measurements",
+                "description": "Measure CMB power spectrum to test IRH inflationary predictions",
+                "discovery_potential": 8.0,
+                "feasibility": 9.0,
+                "cost_estimate": "$500M-$1B",
+                "timeline": "10-20 years",
+            },
         ]
 
         # Sort by discovery potential
-        proposals.sort(key=lambda x: x['discovery_potential'], reverse=True)
+        proposals.sort(key=lambda x: x["discovery_potential"], reverse=True)
 
         return proposals
