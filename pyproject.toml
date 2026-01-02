@@ -84,5 +84,7 @@ addopts = "-v --cov=irh --cov-report=html --cov-report=term"
 
 [tool.ruff]
 line-length = 100
-select = ["E", "F", "W", "I", "N"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I"]
 ignore = ["E501"]

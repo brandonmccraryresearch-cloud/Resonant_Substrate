@@ -5,6 +5,7 @@ This script demonstrates the basic usage of the IRH computational framework.
 """
 
 import numpy as np
+
 from irh import IRH_Framework
 
 
@@ -13,20 +14,20 @@ def main():
     print("Resonant Substrate: IRH Framework Example")
     print("=" * 60)
     print()
-    
+
     # Initialize framework
     print("Initializing IRH Framework...")
     framework = IRH_Framework(grid_resolution=20)
     print(f"✓ Framework initialized with resolution: {framework.grid_resolution}")
     print()
-    
+
     # Calculate CKM matrix
     print("Computing CKM matrix...")
     ckm = framework.calculate_ckm_matrix()
     print("✓ CKM Matrix (3x3 complex):")
     print(np.abs(ckm))  # Print magnitudes
     print()
-    
+
     # Compute neutrino oscillations
     print("Computing neutrino oscillations...")
     L = 295e3  # T2K baseline (295 km)
@@ -36,7 +37,7 @@ def main():
     for flavor, prob in probs.items():
         print(f"  {flavor}: {prob:.4f}")
     print()
-    
+
     # Test field solver with small grid
     print("Testing master equation solver...")
     initial = {
@@ -45,7 +46,7 @@ def main():
         'strand3': np.random.rand(10, 10, 10) * 0.1,
         'strand4': np.random.rand(10, 10, 10) * 0.1,
     }
-    
+
     _ = framework.solve_master_equation(
         initial,
         max_iterations=100,
@@ -53,7 +54,7 @@ def main():
     )
     print("✓ Master equation solved")
     print()
-    
+
     # Parameter optimization
     print("Testing parameter optimization...")
     constraints = {
@@ -61,7 +62,7 @@ def main():
         'alpha_s': (0.118, 0.001),
         'Omega_DM_Omega_b': (5.33, 0.1)
     }
-    
+
     optimized = framework.parameter_optimization(constraints)
     print("✓ Optimized parameters:")
     for param, value in optimized.items():
@@ -69,7 +70,7 @@ def main():
             print(f"  {param}: {value:.6f}")
     print(f"  Optimization cost: {optimized['cost']:.6e}")
     print()
-    
+
     # Generate experimental proposals
     print("Generating experimental proposals...")
     proposals = framework.generate_experimental_proposals()
@@ -82,7 +83,7 @@ def main():
         print(f"   Feasibility: {prop['feasibility']}/10")
         print(f"   Cost: {prop['cost_estimate']}")
         print(f"   Timeline: {prop['timeline']}")
-    
+
     print()
     print("=" * 60)
     print("Example completed successfully!")

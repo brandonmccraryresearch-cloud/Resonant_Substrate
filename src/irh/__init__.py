@@ -1,8 +1,8 @@
 """
 Resonant Substrate: Intrinsic Resonance Holography Framework
 
-A computational framework for implementing and testing the Intrinsic Resonance 
-Holography (IRH) theory - a novel approach to fundamental physics based on 
+A computational framework for implementing and testing the Intrinsic Resonance
+Holography (IRH) theory - a novel approach to fundamental physics based on
 vibrational ontology.
 """
 
