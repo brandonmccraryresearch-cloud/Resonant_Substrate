@@ -193,12 +193,28 @@ class IRH_Phase3_Framework:
         """
         Calculate the CKM matrix from strand geometry
         
+        **PLACEHOLDER - REQUIRES THEORETICAL DERIVATION**
+        
+        This function currently returns the CKM matrix using experimental
+        Wolfenstein parameters as a placeholder. Full IRH implementation requires:
+        
+        TODO:
+        1. Compute topological invariants (β₁=12, n_inst=3) from four-strand manifold
+        2. Derive Vortex Wave Pattern (VWP) configurations for quarks
+        3. Extract mixing angles from VWP geometric relationships
+        4. Compute CP-violating phase from strand topology
+        5. Derive Wolfenstein parameters from strand coupling geometry
+        
         Returns:
-        3x3 CKM matrix
+        3x3 CKM matrix (currently using experimental values)
+        
+        References: IRH v21.1 §3.1-3.2, Appendix D
         """
         logger.info("Calculating CKM matrix from strand geometry")
         
-        # Wolfenstein parameters (current experimental values)
+        # TODO: Replace with theoretical derivation from IRH strand geometry
+        # Current values are Wolfenstein parameterization from experimental data
+        # These should be derived from: topological invariants β₁=12, n_inst=3
         A = 0.814
         lambda_wolf = 0.22537
         rhobar = 0.117
@@ -227,15 +243,31 @@ class IRH_Phase3_Framework:
         """
         Calculate neutrino oscillation probabilities
         
+        **PLACEHOLDER - REQUIRES THEORETICAL DERIVATION**
+        
+        This function currently uses experimental mixing angles and mass splittings.
+        Full IRH implementation requires:
+        
+        TODO:
+        1. Compute neutrino VWP configurations from strand interactions
+        2. Derive mixing angles from VWP geometric relationships
+        3. Compute mass splittings from topological complexity differences
+        4. Include CP-violating phase δ_CP from strand topology
+        5. Derive from strand resonance patterns and K_ν parameters
+        
         Parameters:
         L: Baseline distance (m)
         E: Neutrino energy (MeV)
         
         Returns:
-        Dictionary of oscillation probabilities
+        Dictionary of oscillation probabilities (currently using experimental values)
+        
+        References: IRH v21.1 §3.2.4, Appendix E.3
         """
         logger.info("Calculating neutrino oscillation probabilities")
         
+        # TODO: Replace with theoretical derivation from IRH strand geometry
+        # Current values are from experimental data - to be derived from VWP
         # Neutrino parameters (Normal hierarchy, 2023 values)
         theta12 = np.radians(33.45)
         theta23 = np.radians(49.2)  # Upper octant
