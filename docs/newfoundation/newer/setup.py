@@ -1,12 +1,15 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
 setup(
     name="irh-phase3-framework",
     version="1.0.0",
     author="IRH Research Team",
     author_email="irh-research@institution.edu",
     description="Computational framework for Intrinsic Resonance Holography Phase 3 implementation",
-    long_description=open("README.md").read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/your-username/IRH-Phase3-Framework",
     packages=find_packages(),

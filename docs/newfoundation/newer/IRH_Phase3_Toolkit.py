@@ -19,18 +19,10 @@ Version: 1.0
 """
 
 import numpy as np
-import scipy as sp
-from scipy import optimize, integrate, linalg, interpolate
-from scipy.special import sph_harm, factorial
-import matplotlib.pyplot as plt
-from mpl_toolkits.mplot3d import Axes3D
-import sympy as sym
-from sympy import symbols, cos, sin, exp, sqrt, pi, I, simplify, diff, integrate as sym_integrate
-import multiprocessing as mp
-import json
+from scipy import optimize
 import logging
 import time
-from typing import Tuple, List, Dict, Callable, Optional
+from typing import Tuple, List, Dict
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -467,7 +459,7 @@ def main():
     
     print("Solving coupled field equations...")
     start_time = time.time()
-    solutions = irh_framework.solve_master_equation(initial_conditions, max_iterations=10)
+    _ = irh_framework.solve_master_equation(initial_conditions, max_iterations=10)
     end_time = time.time()
     print(f"Solution obtained in {end_time - start_time:.2f} seconds")
     

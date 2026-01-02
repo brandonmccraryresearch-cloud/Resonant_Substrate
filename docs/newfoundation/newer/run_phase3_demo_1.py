@@ -20,7 +20,7 @@ import logging
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 try:
-    from IRH_Phase3_Toolkit import IRH_Phase3_Framework, main as toolkit_main
+    from IRH_Phase3_Toolkit import IRH_Phase3_Framework
     print("✅ Successfully imported IRH Phase 3 Framework")
 except ImportError as e:
     print(f"❌ Failed to import IRH Phase 3 Framework: {e}")
