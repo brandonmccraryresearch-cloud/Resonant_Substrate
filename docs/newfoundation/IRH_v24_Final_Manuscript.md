@@ -2,6 +2,14 @@
 
 ## The Unified Field as Spectral Geometry
 
+**Author:** Brandon D. McCrary¹
+
+ *¹Independent Theoretical Physics Researcher*
+
+**ORCID:** 0009-0008-2804-7165
+
+**Date:** January 1, 2026
+
 ---
 
 ## Abstract
