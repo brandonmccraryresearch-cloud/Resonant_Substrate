@@ -16,6 +16,7 @@ dependencies:
   
   # Parallel computing
   - numba>=0.55.0
+  - mpi4py>=3.1.0
   
   # Visualization
   - plotly>=5.0.0
