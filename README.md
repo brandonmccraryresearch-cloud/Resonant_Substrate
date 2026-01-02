@@ -24,6 +24,8 @@ IRH represents a paradigm shift from "It from Bit" to "Form from Tension". The f
 
 ## Installation
 
+### Using pip (recommended for most users)
+
 ```bash
 # Clone the repository
 git clone https://github.com/brandonmccraryresearch-cloud/Resonant_Substrate.git
@@ -40,6 +42,20 @@ pip install -r requirements.txt
 
 # Install package in development mode
 pip install -e .
+```
+
+### Using Conda
+
+```bash
+# Clone the repository
+git clone https://github.com/brandonmccraryresearch-cloud/Resonant_Substrate.git
+cd Resonant_Substrate
+
+# Create conda environment
+conda env create -f environment.yml
+
+# Activate the environment
+conda activate resonant-substrate
 ```
 
 ## Quick Start
