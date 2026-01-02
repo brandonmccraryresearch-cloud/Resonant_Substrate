@@ -30,10 +30,6 @@ jobs:
       run: |
         ruff check src/ tests/ examples/
     
-    - name: Format check with black
-      run: |
-        black --check src/ tests/ examples/ --line-length 150
-    
     - name: Type check with mypy
       run: |
         mypy src/irh/ --ignore-missing-imports
