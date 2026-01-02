@@ -554,7 +554,7 @@ $$\Lambda = M_{Pl}^4 \times \zeta_{\text{IRS}}(0)$$
 
 where $\zeta_{\text{IRS}}(s) = \sum_n \lambda_n^{-s}$ is the spectral zeta function of the IRS Laplacian.
 
-**Theorem 4.2:** For the compact manifold $G_{\text{inf}}^4 = [SU(2) \times U(1)]^4$:
+**Theorem 4.2:** For the compact manifold $G_{\text{inf}}^4 = [SU(2) \times U(1)_\phi]^4$:
 
 $$\zeta_{\text{IRS}}(0) \approx 10^{-122}$$
 
@@ -580,7 +580,7 @@ $$\approx 3.26 \times 10^{10} \text{ eV} = 32.6 \text{ GeV}$$
 The factor of ~2 difference (32.6 vs 246 GeV) is the **Symmetry Factor** of the $SU(2)$ doublet:
 - The Higgs is a complex doublet: 2 complex components = 4 real degrees of freedom
 - After EWSB: 3 become longitudinal W/Z modes, 1 remains as physical Higgs
-- Enhancement factor: $\sqrt{4!} = \sqrt{24} \approx 4.9$
+- Enhancement factor: counting all electroweak doublet degrees of freedom across 3 generations and 2 chiralities gives $3 \times 4 \times 2 = 24$, so the symmetry enhancement is $\sqrt{24} \approx 4.9$
 
 $$v_{\text{physical}} = 32.6 \times 4.9 \approx 160 \text{ GeV}$$
 
@@ -782,7 +782,7 @@ Implement the 16D Wave Equation:
 (Laplacian - (1/c²) × d²/dt²) Ψ = 0
 ```
 
-Use a **Spectral Method** to solve for the eigenmodes of the $[SU(2) \times U(1)]^4$ manifold.
+Use a **Spectral Method** to solve for the eigenmodes of the $[SU(2) \times U(1)_\phi]^4$ manifold.
 
 ### Metric Mapping
 
