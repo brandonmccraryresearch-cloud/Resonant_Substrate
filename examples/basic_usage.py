@@ -46,7 +46,7 @@ def main():
         'strand4': np.random.rand(10, 10, 10) * 0.1,
     }
     
-    solutions = framework.solve_master_equation(
+    _ = framework.solve_master_equation(
         initial,
         max_iterations=100,
         tolerance=1e-3

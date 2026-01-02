@@ -26,7 +26,8 @@ def main():
     print("Initializing IRH Framework...")
     framework = IRH_Framework(grid_resolution=args.resolution)
     
-    print(f"Framework initialized with grid resolution: {args.resolution}")
+    print(f"Framework initialized with grid resolution: {framework.grid_resolution}")
+    print(f"Physical constants loaded: α_EM = {framework.constants.alpha_EM:.6f}")
     print("Use 'import irh' in Python to access the framework programmatically")
 
 

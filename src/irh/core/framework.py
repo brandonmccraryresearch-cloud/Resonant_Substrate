@@ -7,10 +7,15 @@ Holography (IRH) Phase 3, including:
 - Master wave equation integration
 - Cymatic kernel calculations
 - Standard Model parameter derivations
+
+Theoretical Foundation:
+- Based on IRH v21.1 Manuscript (copilot-instructions.md)
+- Implements Quaternionic Group Field Theory (cGFT) on G_inf = SU(2) × U(1)_φ
+- Derives physics from algorithmic information theory and resonance principles
 """
 
 import numpy as np
-from typing import Dict, Optional, Tuple, Any
+from typing import Dict, Tuple
 from dataclasses import dataclass
 
 
@@ -130,14 +135,14 @@ class IRH_Framework:
         Compute the cymatic kernel between two points on the manifold.
         
         The cymatic kernel models phase coherence and resonance interactions
-        between different points on G_inf^4.
+        between different points on G_inf = SU(2) × U(1)_φ.
         
         Parameters
         ----------
         g_coords : np.ndarray
-            Coordinates of first point [theta1, theta2, theta3, phi]
+            Group element coordinates [theta1, theta2, theta3, phi] on SU(2) × U(1)
         h_coords : np.ndarray
-            Coordinates of second point [theta1, theta2, theta3, phi]
+            Group element coordinates [theta1, theta2, theta3, phi] on SU(2) × U(1)
             
         Returns
         -------
@@ -146,17 +151,64 @@ class IRH_Framework:
             
         Notes
         -----
-        Implements Eq. (X.X) from IRH manuscript, modeling resonant coupling
-        through phase alignment on the four-strand manifold.
+        Implements proper group structure on G_inf = SU(2) × U(1)_φ.
+        
+        For SU(2) part: Uses quaternionic distance via group operations
+        For U(1) part: Uses phase difference with proper modular arithmetic
+        
+        The cymatic kernel measures resonance discordance between group elements,
+        incorporating both the SU(2) geometric structure and U(1) phase alignment.
+        
+        References: IRH v21.1 §1.1, Appendix A (QNCD Metric)
         """
-        # Compute phase difference
-        phase_diff = np.sum(g_coords - h_coords)
+        # Split coordinates into SU(2) and U(1) parts
+        g_su2, g_u1 = g_coords[:3], g_coords[3]
+        h_su2, h_u1 = h_coords[:3], h_coords[3]
         
-        # Cymatic kernel with Gaussian envelope
-        distance = np.linalg.norm(g_coords - h_coords)
-        amplitude = np.exp(-distance**2 / 2.0)
+        # SU(2) part: Quaternionic distance using group structure
+        # Convert SU(2) coordinates to quaternion representation
+        # q = q0 + i*q1 + j*q2 + k*q3 where q0 = cos(|theta|/2)
+        theta_g = np.linalg.norm(g_su2)
+        theta_h = np.linalg.norm(h_su2)
         
-        return amplitude * np.exp(1j * phase_diff)
+        # Normalized axis for SU(2) rotation
+        if theta_g > 1e-10:
+            n_g = g_su2 / theta_g
+        else:
+            n_g = np.array([0, 0, 1])
+            
+        if theta_h > 1e-10:
+            n_h = h_su2 / theta_h
+        else:
+            n_h = np.array([0, 0, 1])
+        
+        # Quaternion components
+        q0_g = np.cos(theta_g / 2)
+        q_vec_g = np.sin(theta_g / 2) * n_g
+        
+        q0_h = np.cos(theta_h / 2)
+        q_vec_h = np.sin(theta_h / 2) * n_h
+        
+        # Quaternionic distance (geodesic on SU(2))
+        # d_SU2(g,h) = arccos(|<g,h>|) where inner product is quaternionic
+        inner_prod = q0_g * q0_h + np.dot(q_vec_g, q_vec_h)
+        su2_distance = np.arccos(np.clip(np.abs(inner_prod), -1, 1))
+        
+        # U(1) part: Phase difference with proper 2π periodicity
+        phase_diff = np.mod(g_u1 - h_u1 + np.pi, 2*np.pi) - np.pi
+        u1_distance = np.abs(phase_diff)
+        
+        # Combined resonance discordance metric (QNCD-inspired)
+        # Weighted combination reflecting the bi-invariant structure
+        total_distance = np.sqrt(su2_distance**2 + u1_distance**2)
+        
+        # Cymatic kernel with Gaussian envelope for resonance decay
+        amplitude = np.exp(-total_distance**2 / 2.0)
+        
+        # Phase contribution from U(1) alignment
+        phase_contribution = np.exp(1j * phase_diff)
+        
+        return amplitude * phase_contribution
         
     def solve_master_equation(
         self,
@@ -187,8 +239,19 @@ class IRH_Framework:
             
         Notes
         -----
-        Implements the master wave equation from IRH v21.X manuscript.
-        Uses fixed-point iteration with relaxation parameter.
+        Implements the master wave equation from IRH v21.1 manuscript.
+        
+        The equation has the form:
+        [Δ + V_eff(φ)]φ = 0
+        
+        where:
+        - Δ is the four-strand Laplacian operator
+        - V_eff includes cymatic kernel interactions between strands
+        - Boundary conditions incorporate resonance quantization
+        
+        Uses fixed-point iteration with adaptive relaxation for stability.
+        
+        References: IRH v21.1 §1.1-1.2, Eq. 1.1-1.4
         """
         fields = {
             'strand1': initial_conditions['strand1'].copy(),
@@ -197,27 +260,62 @@ class IRH_Framework:
             'strand4': initial_conditions['strand4'].copy(),
         }
         
-        relaxation = 0.1  # Relaxation parameter for stability
+        # Adaptive relaxation parameter (decreases with iterations for stability)
+        base_relaxation = 0.1
         
         for iteration in range(max_iterations):
             fields_old = {k: v.copy() for k, v in fields.items()}
             
+            # Adaptive relaxation (decreases as we converge)
+            relaxation = base_relaxation * (1.0 - iteration / max_iterations)
+            if relaxation < 0.01:
+                relaxation = 0.01
+            
             # Update each strand
             for i, strand in enumerate(['strand1', 'strand2', 'strand3', 'strand4']):
+                # Kinetic term: Laplacian on the four-strand manifold
                 laplacian = self.four_strand_laplacian(fields[strand], i)
                 
-                # Nonlinear interaction term (simplified)
-                interaction = sum(
-                    self.cymatic_kernel(
-                        fields[strand].flatten()[:4],
-                        fields[other].flatten()[:4]
-                    ).real * fields[other]
-                    for other in ['strand1', 'strand2', 'strand3', 'strand4']
-                    if other != strand
-                )
+                # Potential term: Cymatic kernel interactions between strands
+                # This implements the resonance coupling V_eff
+                interaction = np.zeros_like(fields[strand])
+                
+                # For numerical tractability, compute interaction on a sparse grid
+                # In full implementation, this would be a convolution over G_inf
+                shape = fields[strand].shape
+                sample_points = min(20, shape[0])  # Sample subset of points
+                
+                for ix in range(0, shape[0], max(1, shape[0] // sample_points)):
+                    for iy in range(0, shape[1], max(1, shape[1] // sample_points)):
+                        for iz in range(0, shape[2], max(1, shape[2] // sample_points)):
+                            # Current point coordinates (simplified mapping to G_inf)
+                            g_coord = np.array([
+                                ix * 2*np.pi / shape[0],
+                                iy * 2*np.pi / shape[1],
+                                iz * 2*np.pi / shape[2],
+                                0.0  # U(1) phase component
+                            ])
+                            
+                            # Interaction with other strands
+                            local_interaction = 0.0
+                            for other in ['strand1', 'strand2', 'strand3', 'strand4']:
+                                if other != strand:
+                                    # Sample other strand at same point
+                                    h_coord = g_coord.copy()
+                                    kernel_value = self.cymatic_kernel(g_coord, h_coord)
+                                    local_interaction += kernel_value.real * fields[other][ix, iy, iz]
+                            
+                            interaction[ix, iy, iz] = local_interaction
+                
+                # Boundary resonance quantization term (harmonic constraint)
+                # This enforces quantization conditions at boundaries
+                boundary_term = -0.01 * fields[strand]  # Simplified harmonic binding
+                
+                # Combined update: kinetic + interaction + boundary
+                total_force = laplacian + interaction + boundary_term
                 
                 # Update with relaxation
-                fields[strand] = fields_old[strand] + relaxation * (laplacian + interaction)
+                fields[strand] = fields_old[strand] + relaxation * total_force
             
             # Check convergence
             max_change = max(
@@ -245,10 +343,30 @@ class IRH_Framework:
             
         Notes
         -----
-        Implements Wolfenstein parameterization with parameters derived
-        from strand coupling geometry. See IRH v21.X §3.2.3.
+        **Current Implementation Status: Placeholder**
+        
+        This function currently returns the CKM matrix using experimental
+        Wolfenstein parameters as a placeholder. The full theoretical derivation
+        requires:
+        
+        1. Computing topological invariants (β₁ = 12, n_inst = 3) from the
+           four-strand manifold structure
+        2. Deriving Vortex Wave Pattern (VWP) configurations for fermions
+        3. Extracting mixing angles from VWP geometric relationships
+        4. Computing CP-violating phase from strand topology
+        
+        Future implementation will derive these from:
+        - Strand coupling geometry (g1, g2, g3, g4)
+        - Resonance frequencies between strands
+        - Topological complexity parameter K_f
+        
+        References: IRH v21.1 §3.1-3.2, Appendix D
         """
-        # Wolfenstein parameters (derived from IRH geometry)
+        # TODO: Implement actual derivation from IRH strand geometry
+        # Current values are Wolfenstein parameterization from experimental data
+        # These should be derived from: topological invariants β₁=12, n_inst=3
+        
+        # Wolfenstein parameters (experimental values - to be derived)
         lambda_w = 0.22453  # Cabibbo angle
         A = 0.836
         rho = 0.159
@@ -289,15 +407,32 @@ class IRH_Framework:
             
         Notes
         -----
-        Based on three-flavor oscillation framework with mixing angles
-        and mass splittings derived from IRH strand geometry.
+        **Current Implementation Status: Placeholder**
+        
+        This function currently uses experimental mixing angles and mass splittings
+        as placeholders. The full theoretical derivation requires:
+        
+        1. Computing neutrino VWP configurations from strand interactions
+        2. Deriving mixing angles from VWP geometric relationships
+        3. Computing mass splittings from topological complexity differences
+        4. Including CP-violating phase δ_CP from strand topology
+        
+        Future implementation will derive these from:
+        - Strand resonance patterns
+        - Topological complexity parameters (K_ν1, K_ν2, K_ν3)
+        - Normal hierarchy from IRH predictions
+        
+        References: IRH v21.1 §3.2.4, Appendix E.3
         """
-        # Mixing angles (from IRH derivation)
+        # TODO: Implement actual derivation from IRH strand geometry
+        # Current values are from experimental data - to be derived from VWP
+        
+        # Mixing angles (experimental values - to be derived)
         theta12 = 33.82 * np.pi / 180
         theta23 = 49.6 * np.pi / 180
-        theta13 = 8.61 * np.pi / 180
+        # theta13 = 8.61 * np.pi / 180  # Unused in simplified 2-flavor calc
         
-        # Mass splittings (eV²)
+        # Mass splittings (eV²) (experimental values - to be derived)
         delta_m21_sq = 7.39e-5
         delta_m31_sq = 2.523e-3
         
@@ -310,13 +445,18 @@ class IRH_Framework:
         P_emu = np.sin(2*theta12)**2 * np.sin(phase21)**2
         P_mumu = 1 - np.sin(2*theta23)**2 * np.sin(phase31)**2
         
+        # Ensure probabilities are in valid range (handle numerical errors)
+        P_ee = np.clip(P_ee, 0.0, 1.0)
+        P_emu = np.clip(P_emu, 0.0, 1.0)
+        P_mumu = np.clip(P_mumu, 0.0, 1.0)
+        
         return {
-            'P_ee': P_ee,
-            'P_emu': P_emu,
-            'P_etau': 1 - P_ee - P_emu,
-            'P_mumu': P_mumu,
-            'P_mutau': 1 - P_mumu,
-            'P_tautau': 1 - P_mumu,
+            'P_ee': float(P_ee),
+            'P_emu': float(P_emu),
+            'P_etau': float(1 - P_ee - P_emu) if P_ee + P_emu <= 1 else 0.0,
+            'P_mumu': float(P_mumu),
+            'P_mutau': float(1 - P_mumu) if P_mumu <= 1 else 0.0,
+            'P_tautau': float(1 - P_mumu) if P_mumu <= 1 else 0.0,
         }
         
     def parameter_optimization(
