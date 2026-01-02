@@ -445,7 +445,7 @@ $$\alpha^{-1}_{\text{corrected}} = Z \times \frac{2\pi^2}{V_{\text{eff}}}$$
 $$= 121.8 \times \frac{19.739}{17.8} \approx 135.0$$
 
 **Generation Correction:**
-The remaining shift arises from the **3 Active Generations**, each contributing an effective dimensionless correction factor. This factor emerges from the chiral weighting of fermion modes on the substrate (see Section 2.3, Eq. 2.3.4):
+The remaining shift arises from the **3 Active Generations**, each contributing an effective dimensionless correction factor. This factor emerges from the chiral weighting of fermion modes on the substrate (see Section 2.3, Generation correspondence equation):
 
 $$\delta_{\text{gen}} = \frac{2}{3} \times \frac{\pi}{2\phi} \approx 0.68 \quad \text{(per generation)}$$
 
@@ -801,12 +801,12 @@ def compute_fine_structure_constant() -> Tuple[float, float, float]:
     Compute the fine-structure constant from topological impedance.
     
     Derives α⁻¹ ≈ 137.036 from the 4-strand braid geometry on S³,
-    implementing the Topological Impedance Formula (Eq. 3.4.1, Section 3.4).
+    implementing the Topological Impedance Formula from Section 3.4.
     
     The calculation proceeds in three stages:
-    1. Bare impedance from golden ratio packing (Eq. 3.4.2)
-    2. Curvature correction from S³ compactness (Eq. 3.4.5)
-    3. Generation correction from chiral weighting (Eq. 3.4.8)
+    1. Bare impedance from golden ratio packing (Z = 4π × φ⁴ × √2)
+    2. Curvature correction from S³ compactness (V_eff formula)
+    3. Generation correction from chiral weighting (δ_gen formula)
     
     Returns
     -------
@@ -819,31 +819,32 @@ def compute_fine_structure_constant() -> Tuple[float, float, float]:
     References
     ----------
     IRH v24.0, Section 3.4: "Rigorous Derivation of the Fine-Structure Constant"
+    See "The Definitive Topological Impedance Calculation" subsection.
     """
-    # Fundamental constants from topology (Eq. 2.2.1)
-    phi: float = (1 + np.sqrt(5)) / 2  # Golden ratio from KAM stability
+    # Golden ratio from KAM stability (Section 2.2, KAM Theorem and Golden Ratio)
+    phi: float = (1 + np.sqrt(5)) / 2
     pi: float = np.pi
     
-    # Bare topological impedance Z = 4π × φ⁴ × √2 (Eq. 3.4.2)
+    # Bare topological impedance: Z = 4π × φ⁴ × √2 (Section 3.4, Step-by-step calculation)
     Z_bare: float = 4 * pi * phi**4 * np.sqrt(2)  # ≈ 121.8
     
-    # Excluded volume from 4 strand cores (Eq. 3.4.4)
+    # Excluded volume from 4 strand cores (Section 3.4, tubular geometry derivation)
     # Vol(excluded) = 4 × (π r_core² × 2π / Vol(S³)) × 2π² ≈ 1.939
     vol_excluded: float = 1.939
     
-    # Effective braiding volume: V_eff = 2π² - Vol(excluded) (Eq. 3.4.5)
+    # Effective braiding volume: V_eff = 2π² - Vol(excluded) (Section 3.4)
     V_eff: float = 2 * pi**2 - vol_excluded  # ≈ 17.8
     
-    # Curvature correction factor (Eq. 3.4.6)
+    # Curvature correction factor (Section 3.4, Curvature Correction)
     curvature_correction: float = (2 * pi**2) / V_eff  # ≈ 1.109
     
-    # Generation correction from chiral weighting (Eq. 3.4.8)
+    # Generation correction from chiral weighting (Section 3.4, Generation Correction)
     # δ_gen = (2/3) × (π / 2φ) ≈ 0.68 per generation
     delta_gen: float = (2/3) * (pi / (2 * phi))  # ≈ 0.68
     alpha_corrected: float = Z_bare * curvature_correction  # ≈ 135.0
     generation_factor: float = 1 + (3 * delta_gen / alpha_corrected)  # ≈ 1.015
     
-    # Final fine-structure constant inverse (Eq. 3.4.9)
+    # Final fine-structure constant inverse (Section 3.4, boxed result)
     alpha_inv: float = Z_bare * curvature_correction * generation_factor
     
     return alpha_inv, Z_bare, V_eff
@@ -873,7 +874,7 @@ def compute_higgs_vev(M_Pl: float = 1.22e19) -> Tuple[float, float, float]:
     Compute the Higgs VEV from geometric dilution of the Planck scale.
     
     Derives v ≈ 246 GeV as a sub-harmonic overtone of M_Pl,
-    implementing the Geometric Dilution Formula (Eq. 4.5.1, Section 4.5).
+    implementing the Geometric Dilution Formula from Section 4.5.
     
     Parameters
     ----------
@@ -897,7 +898,7 @@ def compute_higgs_vev(M_Pl: float = 1.22e19) -> Tuple[float, float, float]:
     - 2 chiralities (left-handed doublet structure)
     Total: 3 × 4 × 2 = 24, and √24 ≈ 4.9
     
-    See Eq. (4.5.3) for the full derivation.
+    See Section 4.5 "The Hierarchy Problem as Topological Damping" for derivation.
     
     References
     ----------
@@ -905,15 +906,15 @@ def compute_higgs_vev(M_Pl: float = 1.22e19) -> Tuple[float, float, float]:
     """
     pi: float = np.pi
     
-    # Geometric dilution factor: exp(-2π²) (Eq. 4.5.2)
+    # Geometric dilution factor: exp(-2π²) (Section 4.5, geometric suppression formula)
     # This arises from the 16D → 4D dimensional reduction
     geometric_suppression: float = np.exp(-2 * pi**2)  # ≈ 2.67e-9
     
-    # SU(2) symmetry enhancement factor (Eq. 4.5.3)
+    # SU(2) symmetry enhancement factor (Section 4.5, SU(2) Symmetry Factor)
     # 24 = 3 generations × 4 real d.o.f. per doublet × 2 chiralities
     su2_factor: float = np.sqrt(24)  # ≈ 4.9
     
-    # Electroweak scale from geometric mean (Eq. 4.5.4)
+    # Electroweak scale from geometric mean (Section 4.5, Alternative Derivation)
     v: float = M_Pl * geometric_suppression * su2_factor
     # v ≈ 160 GeV (within factor of RG running to 246 GeV)
     
