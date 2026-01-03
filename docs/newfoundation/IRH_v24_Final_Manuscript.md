@@ -387,7 +387,7 @@ This emerges naturally as the scale where the three active strands achieve **com
 
 ## 3.4 The Fine-Structure Constant: A Dual Derivation
 
-The fine-structure constant $\alpha^{-1} = 137.036$ admits two complementary derivations that converge on the same numerical value—one from **timeless topological structure** (Route 1) and one from **integrated cosmic history** (Route 2). This over-determination is not redundancy but a profound consistency check: topology and history are mathematically equivalent projections of the same underlying reality.
+The fine-structure constant $\alpha^{-1} = 137.036$ admits two complementary derivations that converge on the same numerical value—one from **timeless topological structure** (Route 1) and one from **integrated cosmic history** (Route 2). This over-determination is not redundancy but a profound consistency check: topology and history are numerically consistent and conceptually dual projections of the same underlying reality.
 
 ### 3.4.1 Primary Derivation: Topological Impedance (Route 1)
 
