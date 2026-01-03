@@ -105,7 +105,6 @@ class ComplianceChecker:
         """Check for hardcoded physics constants without derivation."""
         # Patterns that might indicate hardcoded constants
         suspicious_patterns = [
-            (r'(?<!#)(?<!computed)(?<!derived)\s*=\s*137\.03[0-9]+', 'fine-structure constant'),
             (r'(?<!#)\s*=\s*137\.03[0-9]+', 'fine-structure constant'),
             (r'(?<!#)\s*=\s*105\.[0-9]+\s*#.*muon', 'muon mass'),
         ]
