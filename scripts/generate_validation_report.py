@@ -13,7 +13,6 @@ IRH v24.0, Section 8: Computational Architecture
 
 import argparse
 import sys
-from pathlib import Path
 from datetime import datetime
 
 
