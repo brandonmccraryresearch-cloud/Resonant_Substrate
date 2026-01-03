@@ -531,14 +531,14 @@ $$J(\theta) = \frac{1}{\cos^4(\theta/2)} = \frac{4}{(1+\cos\theta)^2}$$
 Defining the projection efficiency as the hemispherically averaged area-scaling factor over $0 \le \theta \le \pi/2$:
 $$\eta_{\text{projection}} = \int_{0}^{\pi/2} \frac{4\sin\theta}{(1+\cos\theta)^2}\,\mathrm{d}\theta = 2$$
 
-**Note:** The rigorous integral yields $\eta_{\text{projection}} = 2$, not $4/\pi$. This discrepancy indicates that the original heuristic interpretation requires refinement. For numerical consistency with the target value $\alpha^{-1} \approx 137$, the original $4/\pi$ factor is retained below with the understanding that its physical interpretation remains an open question for future work.
+**Note (unresolved theoretical issue):** The rigorous integral yields $\eta_{\text{projection}} = 2$, not $4/\pi$. This means that, in its current form, the stereographic projection analysis does **not** justify the use of $4/\pi$ as a first-principles efficiency factor. Retaining $4/\pi$ "for numerical consistency with the target value $\alpha^{-1} \approx 137$" is therefore a phenomenological, target-fitting choice and introduces circular reasoning: the value is chosen to match $\alpha$ rather than being uniquely forced by the geometry. This constitutes an unresolved theoretical problem in Route 2, and it currently prevents Route 2 from being regarded as a fully rigorous, topology-forced derivation of $\alpha$ until a non-circular geometric or dynamical justification for $4/\pi$ (or a corrected factor) is found.
 
-This factor measures how many 4D electromagnetic modes "fit" into the space formerly occupied by one mode in the higher-dimensional geometry—a **mode dilution factor** due to the loss of internal dimensions.
+This factor is thus used **provisionally** as a mode-counting ansatz measuring how many 4D electromagnetic modes "fit" into the space formerly occupied by one mode in the higher-dimensional geometry—a **mode dilution factor** due to the loss of internal dimensions. All quantitative conclusions that depend on this specific choice should be interpreted as conjectural and subject to revision.
 
-**Combined Factor (using heuristic $4/\pi$):**
+**Combined Factor (using provisional heuristic $4/\pi$):**
 $$2\phi + \frac{4}{\pi} \approx 3.236068 + 1.273240 \approx 4.509308 \approx 4.509$$
 
-Here the intermediate quantities are shown to six decimal places, while all subsequent estimates (including $Z_{\text{eff}}$) use the rounded combined factor $2\phi + 4/\pi \approx 4.509$ for numerical consistency in this manuscript.
+Here the intermediate quantities are shown to six decimal places, while all subsequent estimates (including $Z_{\text{eff}}$) use the rounded combined factor $2\phi + 4/\pi \approx 4.509$ for internal numerical consistency in this manuscript, with the caveat that this combined factor depends on the unresolved projection-efficiency problem described above.
 
 This represents the **total geometric impedance** experienced by electromagnetic signals propagating through the substrate's topology, combining:
 - **Lateral impedance** ($2\phi$): How flux spreads across the Hopf fiber
