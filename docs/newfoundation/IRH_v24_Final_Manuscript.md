@@ -1565,7 +1565,7 @@ $$Z = 4\pi \phi^4 \sqrt{2}$$
 The fine-structure constant $\alpha$ is the electromagnetic impedance of the substrate.
 
 **α-Duality (α-Correspondence)**
-: The profound numerical and conceptual correspondence between the topological-static derivation of $\alpha$ (from timeless geometry) and the expansion-historical derivation (from integrated cosmic history). Both approaches yield $\alpha^{-1} \approx 137$ to within ~1.2%, suggesting a deep connection between geometric invariants and dynamical flow, as indicated by the Atiyah-Singer index theorem relating topological indices to analytic properties. A rigorous proof of exact mathematical equivalence remains an open problem.
+: The profound numerical and conceptual correspondence between the topological-static derivation of $\alpha$ (from timeless geometry) and the expansion-historical derivation (from integrated cosmic history). The two approaches yield values of $\alpha^{-1}$ that differ from each other by $\sim 1.2\%$, while both closely approximating the experimental value $\alpha^{-1} \approx 137.036$, suggesting a deep connection between geometric invariants and dynamical flow, as indicated by the Atiyah-Singer index theorem relating topological indices to analytic properties. A rigorous proof of exact mathematical equivalence remains an open problem.
 
 **Geometric Dilution**
 : The exponential suppression of energy scales during dimensional reduction (16D → 4D). Explains the hierarchy between Planck and electroweak scales without fine-tuning:
