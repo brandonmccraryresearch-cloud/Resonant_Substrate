@@ -326,7 +326,7 @@ class VortexWavePattern:
         if self.particle_type == 'electron':
             # Base mass scale from M_Pl with instantonic suppression
             suppression = self.instantonic_suppression_factor()
-            m_e = 1.22e19 * 1e-3 * suppression  # Convert to MeV
+            m_e = 1.22e19 * 1e3 * suppression  # Convert GeV to MeV
             return m_e
         else:
             raise NotImplementedError(f"Mass calculation for {self.particle_type}")
