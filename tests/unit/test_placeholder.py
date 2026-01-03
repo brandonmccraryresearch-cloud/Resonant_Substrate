@@ -4,7 +4,6 @@ Placeholder unit test to prevent pytest from failing on empty test directory.
 This file will be replaced with actual unit tests as the implementation progresses.
 """
 
-import pytest
 
 
 def test_placeholder_passes():
