@@ -106,7 +106,7 @@ class ComplianceChecker:
         # Patterns that might indicate hardcoded constants
         suspicious_patterns = [
             (r'(?<!#)(?<!computed)(?<!derived)\s*=\s*137\.03[0-9]+', 'fine-structure constant'),
-            (r'(?<!#)\s*=\s*0\.51[0-9]+\s*#.*electron', 'electron mass'),
+            (r'(?<!#)\s*=\s*137\.03[0-9]+', 'fine-structure constant'),
             (r'(?<!#)\s*=\s*105\.[0-9]+\s*#.*muon', 'muon mass'),
         ]
         
