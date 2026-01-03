@@ -1786,7 +1786,8 @@ in units of the $S^3$ radius.
 | 0.68 | $\delta_{\text{gen}}$ | Chiral weighting factor | Section 3.4.1 |
 | 137.036 | $\alpha^{-1}$ | Fine-structure constant | Section 3.4 |
 | 5.33 | $\Omega_{DM}/\Omega_b$ | Volume ratio | Section 5.2 |
-| 24 | Raw gauge modes | $\binom{4}{2} \times 4$ (pairwise interactions); also $3 \times 4 \times 2$ in Section 4.5 | Section 3.4.2 |
+| 24 | Raw gauge modes | $\binom{4}{2} \times 4$ (pairwise interactions of 4 strands) | Section 3.4.2 |
+| 24 | Electroweak doublet states | $3 \times 4 \times 2$ (generations × EW doublets × chiralities); numerically coincides with raw gauge modes but counts distinct matter-field degrees of freedom | Section 4.5 |
 | 21 | EM gauge modes | $24 - 3$ (symmetry reduction) | Section 3.4.2 |
 | 4.509 | $(2\phi + 4/\pi)$ | Geometric impedance factor | Section 3.4.2 |
 | 94.689 | $Z_{\text{eff}}$ | Effective impedance ($21 \times 4.509$) | Section 3.4.2 |
