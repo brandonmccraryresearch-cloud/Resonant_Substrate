@@ -81,7 +81,7 @@ engine.passed("Computation complete")
 
 ### 5. Documentation Updates
 - [ ] **README.md** updated if user-facing changes
-- [ ] **TECHNICAL_REFERENCE.md** updated if API changes
+- [ ] **docs/api_reference/** updated if API changes
 - [ ] **Notebooks updated** if computational changes
 - [ ] **Manuscript citations** verified and accurate
 - [ ] **No contradictions** with existing documentation
