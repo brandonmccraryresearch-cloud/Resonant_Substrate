@@ -551,13 +551,13 @@ This measures the **number of e-foldings** separating the Planck scale from the 
 **Gauge-Mode Factor $N_{\text{gauge}} = 24$:** The denominator $N_{\text{gauge}} = 24$ represents the **pre-reduction gauge modes** arising from pairwise strand interactions: $\binom{4}{2} \times 4 = 6 \times 4 = 24$ modes before symmetry reduction to 21. (Note: This $N_{\text{gauge}} = 24$ is distinct from the factor $N_{\text{EW}} = 24$ in Section 4.5, where $N_{\text{EW}}$ arises from electroweak doublet counting: $3 \times 4 \times 2 = 24$.)
 
 **The Square Root:** The effective coupling at the electron mass scale is the **geometric mean** over all decoupling events:
-$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{\frac{51.5}{24}} = \sqrt{2.146} \approx 1.465$$
+$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{\frac{51.5}{24}} \approx \sqrt{2.1458} \approx 1.465$$
 
 #### Numerical Verification (Route 2):
 
 $$\alpha^{-1} = 21 \times 4.509 \times 1.465$$
 $$= 94.689 \times 1.465$$
-$$\approx 138.7$$
+$$\approx 138.72$$
 
 **Philosophical Stance:** The fine-structure constant **emerges** from cosmic evolution—it "remembers" the sequential phase-locking events as the universe cooled.
 
@@ -591,7 +591,7 @@ The combined curvature + generation correction:
 $$1.109 \times 1.015 \approx 1.126$$
 
 The scaling factor from Route 2:
-$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{2.146} \approx 1.465$$
+$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{2.1458} \approx 1.465$$
 
 **The Equivalence Relation:**
 
@@ -599,20 +599,14 @@ $$Z_{\text{bare}} \times \text{(curvature + generation corrections)} = Z_{\text{
 
 Numerically, taking $Z_{\text{bare}} \approx 121.8$ and $Z_{\text{eff}} \approx 94.689$, we obtain
 $$Z_{\text{bare}} \times 1.126 \;\approx\; 121.8 \times 1.126 \;\approx\; 137.1,$$
-$$Z_{\text{eff}} \times 1.465 \;\approx\; 94.689 \times 1.465 \;\approx\; 138.7,$$
+$$Z_{\text{eff}} \times 1.465 \;\approx\; 94.689 \times 1.465 \;\approx\; 138.72,$$
 so both constructions reproduce $\alpha^{-1} \approx 137$ to within the stated percent-level accuracy.
 
-Numerically, taking $Z_{\text{bare}} \approx 121.8$ and $Z_{\text{eff}} \approx 94.689$, we obtain
-$$Z_{\text{bare}} \times 1.126 \;\approx\; 121.8 \times 1.126 \;\approx\; 137.1,$$
-$$Z_{\text{eff}} \times 1.465 \;\approx\; 94.689 \times 1.465 \;\approx\; 138.7,$$
-so both constructions reproduce $\alpha^{-1} \approx 137$ to within the stated percent-level accuracy.
+The document's **static corrections** (curvature of $S^3$, excluded volume, chiral weighting) are **mathematically equivalent** to the **dynamic corrections** (logarithmic RG running from Planck to EM scales).
 
-The document's **static corrections** (curvature of $S^3$, excluded volume, chiral weighting) are
-**mathematically equivalent** to the **dynamic corrections** (logarithmic RG running from Planck
-to EM scales).
-**Note on Mathematical Structure:** Route 1 uses an additive correction (135.0 + 2.04 = 137.04), while Route 2 uses multiplicative factors (21 × 4.509 × 1.465 = 138.7). The conversion of the additive generation correction to a multiplicative factor $f_{\text{gen}} = 137.04/135.0$ for comparison is mathematically valid because both formulations ultimately express $\alpha^{-1}$ as a product of a base impedance and correction factors—the difference lies in how these corrections are organized, not in their physical content.
+**Note on Mathematical Structure:** Route 1 uses an additive correction (135.0 + 2.04 = 137.04), while Route 2 uses multiplicative factors (21 × 4.509 × 1.465 = 138.72). The conversion of the additive generation correction to a multiplicative factor $f_{\text{gen}} = 137.04/135.0$ for comparison is mathematically valid because both formulations ultimately express $\alpha^{-1}$ as a product of a base impedance and correction factors—the difference lies in how these corrections are organized, not in their physical content.
 
-**Difference:** $|137.04 - 138.7|/137.036 \approx 1.2\%$
+**Difference:** $|137.04 - 138.72|/137.036 \approx 1.2\%$
 
 This tiny discrepancy arises from:
 1. Higher-loop corrections (both calculations are effectively 1-loop)
