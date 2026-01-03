@@ -654,7 +654,7 @@ Code WILL BE REJECTED if:
 ### Manuscript References
 
 **PRIMARY SOURCE:**
-- IRH v24.0 Manuscript: `IRH_v24_Final_Manuscript.md`
+- IRH v24.0 Manuscript: `docs/newfoundation/IRH_v24_Final_Manuscript.md`
 
 ---
 
