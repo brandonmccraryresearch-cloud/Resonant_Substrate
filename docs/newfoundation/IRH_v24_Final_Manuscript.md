@@ -628,8 +628,10 @@ Within the precision of the calculation framework, **both routes yield numerical
 
 The numerical correspondence reveals a profound principle: **The Substrate Remembers.**
 
-The topological structure of $G_{\text{inf}}^4$ at low energies is a **palimpsest** (a manuscript that has been written on multiple times, with traces of earlier writing still visible)—a record of every phase transition, every symmetry breaking, every decoupling event in cosmic history. The excluded volume (1.939), the effective braiding volume (17.8), the golden ratio packing—these are not arbitrary geometric choices but **fossilized imprints** of the universe's expansion trajectory.
+The topological structure of $G_{\text{inf}}^4$ at low energies is a **palimpsest**[^palimpsest-def]—a record of every phase transition, every symmetry breaking, every decoupling event in cosmic history. The excluded volume (1.939), the effective braiding volume (17.8), the golden ratio packing—these are not arbitrary geometric choices but **fossilized imprints** of the universe's expansion trajectory.
 
+[^palimpsest-def]: A manuscript that has been written on multiple times, with traces of earlier
+    writing still visible.
 **The Golden Ratio's Dual Role:**
 
 - **Dynamically (Route 2):** $\phi$ appears via **KAM stability** during RG flow—frequency ratios naturally settle into golden-ratio relationships to avoid resonance destruction
