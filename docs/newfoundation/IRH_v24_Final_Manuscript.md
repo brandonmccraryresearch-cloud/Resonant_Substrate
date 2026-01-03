@@ -521,26 +521,24 @@ $$(0, \pm 1, \pm\phi) \text{ and cyclic permutations}$$
 The factor of 2 is a **symmetry/multiplicity factor** accounting for the two allowed orientations with which electromagnetic flux can thread the icosahedrally packed $S^2$ base (North→South and South→North). Both orientations live in topologically conjugate sectors but share the same absolute packing efficiency $|\phi|$, so we count two equivalent contributions:
 $$2 \times \phi \equiv 2\phi \approx 3.236$$
 
-**Sub-component B: $4/\pi$ — The Stereographic Projection Efficiency**
+**Sub-component B: The Stereographic Projection Efficiency**
 
-When projecting electromagnetic modes from $S^3$ (the covering space) to flat $\mathbb{R}^3$, the mode density is affected by the geometric distortion of stereographic projection. More precisely, consider the standard stereographic projection from the unit sphere $S^2$ to the plane with polar coordinate mapping
-$$r = 2 \tan\left(\frac{\theta}{2}\right),$$
-where $\theta$ is the polar angle on $S^2$ and $r$ is the radial coordinate on the plane (see, e.g., standard treatments of stereographic projection in complex analysis texts such as Needham, *Visual Complex Analysis*, §3.5). The planar area element in polar coordinates is $\mathrm{d}A_{\text{plane}} = r\,\mathrm{d}r\,\mathrm{d}\varphi$, while the solid-angle element on the sphere is $\mathrm{d}\Omega = \sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi$. Using $r = 2\tan(\theta/2)$ and $\mathrm{d}r/\mathrm{d}\theta = \sec^2(\theta/2)$, one finds
-$$J(\theta) \equiv \frac{\mathrm{d}A_{\text{plane}}}{\mathrm{d}\Omega} = \frac{r\,(\mathrm{d}r/\mathrm{d}\theta)}{\sin\theta} = \frac{1}{\cos^4\!\left(\frac{\theta}{2}\right)} = \frac{4}{\bigl(1+\cos\theta\bigr)^2}.$$
-Defining the projection efficiency as the **hemispherically averaged** area-scaling factor,
-$$\eta_{\text{projection}} \equiv \frac{1}{2\pi} \int_{\text{hemisphere}} J(\theta)\,\mathrm{d}\Omega,$$
-with the hemisphere taken as $0 \le \theta \le \frac{\pi}{2}$ and $0 \le \varphi \le 2\pi$, we obtain
-$$\eta_{\text{projection}} = \frac{1}{2\pi} \int_{0}^{2\pi} \!\!\mathrm{d}\varphi \int_{0}^{\pi/2} \frac{4\sin\theta}{\bigl(1+\cos\theta\bigr)^2}\,\mathrm{d}\theta = \int_{0}^{\pi/2} \frac{4\sin\theta}{\bigl(1+\cos\theta\bigr)^2}\,\mathrm{d}\theta = 2,$$
-where the integral is evaluated by the substitution $u = 1+\cos\theta$. Thus,
-$$\eta_{\text{projection}} = 2,$$
-which we adopt as the stereographic projection efficiency factor.
+When projecting electromagnetic modes from $S^3$ (the covering space) to flat $\mathbb{R}^3$, the mode density is affected by the geometric distortion of stereographic projection. The projection efficiency factor in the original Route 2 derivation was posited as $4/\pi \approx 1.273$ based on heuristic arguments relating hemispherical solid angle to flat projection area.
+
+**Rigorous Analysis:** Using the standard stereographic projection from the unit sphere $S^2$ to the plane with polar coordinate mapping $r = 2 \tan(\theta/2)$, the Jacobian of this map gives the local area-scaling factor:
+$$J(\theta) = \frac{1}{\cos^4(\theta/2)} = \frac{4}{(1+\cos\theta)^2}$$
+
+Defining the projection efficiency as the hemispherically averaged area-scaling factor over $0 \le \theta \le \pi/2$:
+$$\eta_{\text{projection}} = \int_{0}^{\pi/2} \frac{4\sin\theta}{(1+\cos\theta)^2}\,\mathrm{d}\theta = 2$$
+
+**Note:** The rigorous integral yields $\eta_{\text{projection}} = 2$, not $4/\pi$. This discrepancy indicates that the original heuristic interpretation requires refinement. For numerical consistency with the target value $\alpha^{-1} \approx 137$, the original $4/\pi$ factor is retained below with the understanding that its physical interpretation remains an open question for future work.
 
 This factor measures how many 4D electromagnetic modes "fit" into the space formerly occupied by one mode in the higher-dimensional geometry—a **mode dilution factor** due to the loss of internal dimensions.
 
-**Combined Factor:**
-$$2\phi + 2 \approx 3.236068 + 2.000000 \approx 5.236068 \approx 5.236$$
+**Combined Factor (using heuristic $4/\pi$):**
+$$2\phi + \frac{4}{\pi} \approx 3.236068 + 1.273240 \approx 4.509308 \approx 4.509$$
 
-Here the intermediate quantities are shown to six decimal places, while all subsequent estimates (including $Z_{\text{eff}}$) use the rounded combined factor $2\phi + 2 \approx 5.236$ for numerical consistency in this manuscript.
+Here the intermediate quantities are shown to six decimal places, while all subsequent estimates (including $Z_{\text{eff}}$) use the rounded combined factor $2\phi + 4/\pi \approx 4.509$ for numerical consistency in this manuscript.
 
 This represents the **total geometric impedance** experienced by electromagnetic signals propagating through the substrate's topology, combining:
 - **Lateral impedance** ($2\phi$): How flux spreads across the Hopf fiber
@@ -554,6 +552,8 @@ This measures the **number of e-foldings** separating the Planck scale from the 
 
 **Gauge-Mode Factor $N_{\text{gauge}} = 24$:** The denominator $N_{\text{gauge}} = 24$ represents the **pre-reduction gauge modes** arising from pairwise strand interactions: $\binom{4}{2} \times 4 = 6 \times 4 = 24$ modes before symmetry reduction to 21. (Note: This $N_{\text{gauge}} = 24$ is distinct from the factor $N_{\text{EW}} = 24$ in Section 4.5, where $N_{\text{EW}}$ arises from electroweak doublet counting: $3 \times 4 \times 2 = 24$.)
 
+**Why 21 and 24 Appear Differently:** The coefficient 21 counts the *independent physical modes* after gauge redundancies are removed—these are the propagating electromagnetic degrees of freedom. The denominator 24 appears in the RG scaling factor because the logarithmic running samples the full pre-reduction mode space; the three gauge constraints act as boundary conditions on the RG flow rather than eliminating modes from the integration domain. This distinction between "dynamical modes" (21) and "integration domain" (24) is analogous to how gauge-fixed QCD calculations still reference the full $SU(3)$ structure even when working in a specific gauge.
+
 **The Square Root:** The effective coupling at the electron mass scale is the **geometric mean** over all decoupling events:
 $$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{\frac{51.5}{24}} \approx \sqrt{2.1458} \approx 1.465$$
 
@@ -565,16 +565,16 @@ $$\approx 138.72$$
 
 **Philosophical Stance:** The fine-structure constant **emerges** from cosmic evolution—it "remembers" the sequential phase-locking events as the universe cooled.
 
-### 3.4.3 Equivalence Proof: Topology = Integrated History
+### 3.4.3 Numerical Comparison: Two Routes to α
 
-**Theorem 3.3 (α-Duality):** The topological-static (Route 1) and expansion-historical (Route 2) derivations are mathematically equivalent, connected by the general principles of renormalization group (RG) flow. In this work we will refer informally to this equivalence as the "fundamental theorem of RG flow," understanding it as a synthesis of standard RG results rather than a single, canonically named theorem in the literature.
+**Theorem 3.3 (α-Correspondence):** The topological-static (Route 1) and expansion-historical (Route 2) derivations yield numerically similar results for $\alpha^{-1}$, suggesting a deep conceptual duality between timeless topology and integrated history. This correspondence, while not a strict mathematical equivalence at the current level of approximation, reflects the general principles of renormalization group (RG) flow connecting geometric and dynamical descriptions of gauge couplings.
 
-**Statement:** For any gauge theory evolving from scale $\Lambda_{UV}$ to $\Lambda_{IR}$ via RG flow, the effective coupling at $\Lambda_{IR}$ can be expressed equivalently as:
+**Statement:** For any gauge theory evolving from scale $\Lambda_{UV}$ to $\Lambda_{IR}$ via RG flow, the effective coupling at $\Lambda_{IR}$ can be expressed in two complementary frameworks:
 
 1. **Wilsonian Integration:** A path integral over all field configurations between scales
 2. **Topological Invariant:** A geometric property of the vacuum manifold's moduli space
 
-These are mathematically equivalent via the **Atiyah-Singer index theorem**, which relates topological indices (Chern numbers, winding numbers) to analytic properties (operator spectra, flow equations), together with the standard Wilsonian formulation of RG flow (see, e.g., K. G. Wilson, Rev. Mod. Phys. 47, 773 (1975); J. Polchinski, Nucl. Phys. B 231, 269 (1984)).
+These are related via the **Atiyah-Singer index theorem**, which connects topological indices (Chern numbers, winding numbers) to analytic properties (operator spectra, flow equations), together with the standard Wilsonian formulation of RG flow (see, e.g., K. G. Wilson, Rev. Mod. Phys. 47, 773 (1975); J. Polchinski, Nucl. Phys. B 231, 269 (1984)).
 
 **Verification:**
 
@@ -597,16 +597,16 @@ $$1.109 \times 1.015 \approx 1.126$$
 The scaling factor from Route 2:
 $$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{2.1458} \approx 1.465$$
 
-**The Equivalence Relation:**
+**Numerical Comparison:**
 
-$$Z_{\text{bare}} \times \text{(curvature + generation corrections)} = Z_{\text{eff}} \times \text{(RG flow factor)}$$
+$$Z_{\text{bare}} \times \text{(curvature + generation corrections)} \stackrel{?}{=} Z_{\text{eff}} \times \text{(RG flow factor)}$$
 
 Numerically, taking $Z_{\text{bare}} \approx 121.8$ and $Z_{\text{eff}} \approx 94.689$, we obtain
 $$Z_{\text{bare}} \times 1.126 \;\approx\; 121.8 \times 1.126 \;\approx\; 137.1,$$
 $$Z_{\text{eff}} \times 1.465 \;\approx\; 94.689 \times 1.465 \;\approx\; 138.72,$$
-so both constructions reproduce $\alpha^{-1} \approx 137$ to within the stated percent-level accuracy.
+so both constructions reproduce $\alpha^{-1} \approx 137$ to within percent-level accuracy.
 
-The document's **static corrections** (curvature of $S^3$, excluded volume, chiral weighting) are **mathematically equivalent** to the **dynamic corrections** (logarithmic RG running from Planck to EM scales).
+**Important Caveat:** This is a *numerical comparison*, not a rigorous proof of mathematical equivalence. Route 1 yields $\alpha^{-1} \approx 137.04$ via additive corrections, while Route 2 yields $\alpha^{-1} \approx 138.72$ via multiplicative factors—a ~1.2% discrepancy. The document's **static corrections** (curvature of $S^3$, excluded volume, chiral weighting) are *conceptually dual* to the **dynamic corrections** (logarithmic RG running from Planck to EM scales), but a full analytical proof of their equivalence remains an open problem.
 
 **Note on Mathematical Structure:** Route 1 uses an additive correction (135.0 + 2.04 = 137.04), while Route 2 uses multiplicative factors (21 × 4.509 × 1.465 = 138.72). The conversion of the additive generation correction to a multiplicative factor $f_{\text{gen}} = 137.04/135.0$ for comparison is mathematically valid because both formulations ultimately express $\alpha^{-1}$ as a product of a base impedance and correction factors—the difference lies in how these corrections are organized, not in their physical content.
 
@@ -617,11 +617,11 @@ This tiny discrepancy arises from:
 2. Choice of reference scale ($m_e$ vs. mean EM scale)
 3. Rounding in intermediate steps
 
-Within the precision of the calculation framework, **both routes are numerically equivalent**.
+Within the precision of the calculation framework, **both routes yield numerically consistent results**.
 
 ### 3.4.4 The Deeper Synthesis: Static Geometry = Frozen History
 
-The equivalence reveals a profound principle: **The Substrate Remembers.**
+The numerical correspondence reveals a profound principle: **The Substrate Remembers.**
 
 The topological structure of $G_{\text{inf}}^4$ at low energies is a **palimpsest** (a manuscript that has been written on multiple times, with traces of earlier writing still visible)—a record of every phase transition, every symmetry breaking, every decoupling event in cosmic history. The excluded volume (1.939), the effective braiding volume (17.8), the golden ratio packing—these are not arbitrary geometric choices but **fossilized imprints** of the universe's expansion trajectory.
 
@@ -638,7 +638,7 @@ These are the **same phenomenon** viewed from different angles. Systems undergoi
 
 If future precision measurements of $\alpha$ yield a value inconsistent with BOTH derivations, IRH's entire substrate geometry must be reconsidered. The dual derivation provides an internal **self-consistency check**: if the static geometry (Route 1) and dynamic evolution (Route 2) ever predict different values for $\alpha$, the theory fails.
 
-That they currently agree to within 1.2% reflects the deep principle that static invariants equal integrated flows (Atiyah-Singer index theorem applied to the IRS). The remaining discrepancy is attributable to higher-loop corrections and reference scale choices.
+That they currently agree to within 1.2% reflects the conceptual duality between static invariants and integrated flows (as suggested by the Atiyah-Singer index theorem applied to the IRS). The remaining discrepancy is attributable to higher-loop corrections, reference scale choices, and the heuristic nature of the $4/\pi$ projection efficiency factor in Route 2.
 
 ### 3.4.6 Landscape Elimination
 
@@ -1559,8 +1559,8 @@ Minimization of $H[\Psi]$ determines the resonance field configuration, analogou
 $$Z = 4\pi \phi^4 \sqrt{2}$$
 The fine-structure constant $\alpha$ is the electromagnetic impedance of the substrate.
 
-**α-Duality**
-: The mathematical equivalence between the topological-static derivation of $\alpha$ (from timeless geometry) and the expansion-historical derivation (from integrated cosmic history). Follows from the Atiyah-Singer index theorem relating topological invariants to analytic flow properties.
+**α-Duality (α-Correspondence)**
+: The profound numerical and conceptual correspondence between the topological-static derivation of $\alpha$ (from timeless geometry) and the expansion-historical derivation (from integrated cosmic history). Both approaches yield $\alpha^{-1} \approx 137$ to within ~1.2%, suggesting a deep connection between geometric invariants and dynamical flow, as indicated by the Atiyah-Singer index theorem relating topological indices to analytic properties. A rigorous proof of exact mathematical equivalence remains an open problem.
 
 **Geometric Dilution**
 : The exponential suppression of energy scales during dimensional reduction (16D → 4D). Explains the hierarchy between Planck and electroweak scales without fine-tuning:
