@@ -602,8 +602,14 @@ $$Z_{\text{bare}} \times 1.126 \;\approx\; 121.8 \times 1.126 \;\approx\; 137.1,
 $$Z_{\text{eff}} \times 1.465 \;\approx\; 94.689 \times 1.465 \;\approx\; 138.7,$$
 so both constructions reproduce $\alpha^{-1} \approx 137$ to within the stated percent-level accuracy.
 
-The document's **static corrections** (curvature of $S^3$, excluded volume, chiral weighting) are **mathematically equivalent** to the **dynamic corrections** (logarithmic RG running from Planck to EM scales).
+Numerically, taking $Z_{\text{bare}} \approx 121.8$ and $Z_{\text{eff}} \approx 94.689$, we obtain
+$$Z_{\text{bare}} \times 1.126 \;\approx\; 121.8 \times 1.126 \;\approx\; 137.1,$$
+$$Z_{\text{eff}} \times 1.465 \;\approx\; 94.689 \times 1.465 \;\approx\; 138.7,$$
+so both constructions reproduce $\alpha^{-1} \approx 137$ to within the stated percent-level accuracy.
 
+The document's **static corrections** (curvature of $S^3$, excluded volume, chiral weighting) are
+**mathematically equivalent** to the **dynamic corrections** (logarithmic RG running from Planck
+to EM scales).
 **Note on Mathematical Structure:** Route 1 uses an additive correction (135.0 + 2.04 = 137.04), while Route 2 uses multiplicative factors (21 × 4.509 × 1.465 = 138.7). The conversion of the additive generation correction to a multiplicative factor $f_{\text{gen}} = 137.04/135.0$ for comparison is mathematically valid because both formulations ultimately express $\alpha^{-1}$ as a product of a base impedance and correction factors—the difference lies in how these corrections are organized, not in their physical content.
 
 **Difference:** $|137.04 - 138.7|/137.036 \approx 1.2\%$
