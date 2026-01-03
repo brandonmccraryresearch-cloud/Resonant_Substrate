@@ -62,7 +62,7 @@ class ComputationRecord:
     """Complete record of a single computation."""
     
     name: str
-    value: Union[float, complex, np.ndarray]
+    value: Optional[Union[float, complex, np.ndarray]]
     units: Optional[str] = None
     uncertainty: Optional[float] = None
     components: Dict[str, Any] = field(default_factory=dict)
