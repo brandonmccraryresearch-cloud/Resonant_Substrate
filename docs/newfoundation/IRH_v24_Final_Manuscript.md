@@ -637,9 +637,9 @@ These are the **same phenomenon** viewed from different angles. Systems undergoi
 
 ### 3.4.5 Falsification Criterion
 
-If future precision measurements of $\alpha$ yield a value inconsistent with BOTH derivations, IRH's entire substrate geometry must be reconsidered. The dual derivation provides an internal **self-consistency check**: if the static geometry (Route 1) and dynamic evolution (Route 2) ever predict different values for $\alpha$, the theory fails.
+If future precision measurements of $\alpha$ yield a value inconsistent with the combined, loop-corrected prediction of BOTH derivations, IRH's entire substrate geometry must be reconsidered. The dual derivation provides an internal **self-consistency check**: in the limit where both routes are computed including all relevant higher-loop corrections and evaluated at the same renormalization scale, if the static geometry (Route 1) and dynamic evolution (Route 2) predict values for $\alpha$ that differ by more than the estimated theoretical uncertainty, the theory fails.
 
-That they currently agree to within 1.2% reflects the conceptual duality between static invariants and integrated flows (as suggested by the Atiyah-Singer index theorem applied to the IRS). The remaining discrepancy is attributable to higher-loop corrections, reference scale choices, and the heuristic nature of the $4/\pi$ projection efficiency factor in Route 2.
+At the current level of approximation, the two routes differ by about 1.2%. Within IRH this is interpreted as **provisional agreement**, since the discrepancy lies within the expected size of omitted higher-loop corrections, ambiguities in the reference scale choice, and the heuristic nature of the $4/\pi$ projection efficiency factor in Route 2. As these ingredients are refined, the two predictions must converge toward each other and toward experiment; persistent disagreement beyond the theoretical and experimental uncertainty bands would falsify the present IRH substrate geometry.
 
 ### 3.4.6 Landscape Elimination
 
