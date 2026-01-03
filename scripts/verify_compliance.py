@@ -18,7 +18,6 @@ IRH v24.0 Manuscript, Section 8: Computational Architecture
 
 import argparse
 import json
-import os
 import re
 import sys
 from pathlib import Path
