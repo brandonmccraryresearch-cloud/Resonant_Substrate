@@ -15,18 +15,17 @@ import sys
 from pathlib import Path
 
 
-def main():
+def main() -> int:
     """Check for theoretical annotations."""
     print("Verifying theoretical annotations...")
-    
-    src_dir = Path('src')
+
+    src_dir = Path("src")
     if not src_dir.exists():
-        print("Warning: src/ directory not found")
-        return 0
-    
-    python_files = list(src_dir.rglob('*.py'))
+        print("Error: src/ directory not found", file=sys.stderr)
+        return 1
+
+    python_files = list(src_dir.rglob("*.py"))
     print(f"Found {len(python_files)} Python files to check")
-    
     # This is a placeholder - real implementation would parse docstrings
     print("✅ Theoretical annotation check complete")
     return 0
