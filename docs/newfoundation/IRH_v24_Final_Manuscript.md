@@ -525,18 +525,22 @@ $$2 \times \phi \equiv 2\phi \approx 3.236$$
 
 When projecting electromagnetic modes from $S^3$ (the covering space) to flat $\mathbb{R}^3$, the mode density is affected by the geometric distortion of stereographic projection. More precisely, consider the standard stereographic projection from the unit sphere $S^2$ to the plane with polar coordinate mapping
 $$r = 2 \tan\left(\frac{\theta}{2}\right),$$
-where $\theta$ is the polar angle on $S^2$ and $r$ is the radial coordinate on the plane (see, e.g., standard treatments of stereographic projection in complex analysis texts). The Jacobian of this map gives the local area-scaling factor $J(\theta) = \mathrm{d}A_{\text{plane}} / \mathrm{d}\Omega$, relating planar area $\mathrm{d}A_{\text{plane}}$ to solid angle $\mathrm{d}\Omega$ on the sphere. Defining the projection efficiency as the **hemispherically averaged** area-scaling factor,
+where $\theta$ is the polar angle on $S^2$ and $r$ is the radial coordinate on the plane (see, e.g., standard treatments of stereographic projection in complex analysis texts such as Needham, *Visual Complex Analysis*, §3.5). The planar area element in polar coordinates is $\mathrm{d}A_{\text{plane}} = r\,\mathrm{d}r\,\mathrm{d}\varphi$, while the solid-angle element on the sphere is $\mathrm{d}\Omega = \sin\theta\,\mathrm{d}\theta\,\mathrm{d}\varphi$. Using $r = 2\tan(\theta/2)$ and $\mathrm{d}r/\mathrm{d}\theta = \sec^2(\theta/2)$, one finds
+$$J(\theta) \equiv \frac{\mathrm{d}A_{\text{plane}}}{\mathrm{d}\Omega} = \frac{r\,(\mathrm{d}r/\mathrm{d}\theta)}{\sin\theta} = \frac{1}{\cos^4\!\left(\frac{\theta}{2}\right)} = \frac{4}{\bigl(1+\cos\theta\bigr)^2}.$$
+Defining the projection efficiency as the **hemispherically averaged** area-scaling factor,
 $$\eta_{\text{projection}} \equiv \frac{1}{2\pi} \int_{\text{hemisphere}} J(\theta)\,\mathrm{d}\Omega,$$
-one obtains the dimensionless value
-$$\eta_{\text{projection}} = \frac{4}{\pi} \approx 1.273,$$
+with the hemisphere taken as $0 \le \theta \le \frac{\pi}{2}$ and $0 \le \varphi \le 2\pi$, we obtain
+$$\eta_{\text{projection}} = \frac{1}{2\pi} \int_{0}^{2\pi} \!\!\mathrm{d}\varphi \int_{0}^{\pi/2} \frac{4\sin\theta}{\bigl(1+\cos\theta\bigr)^2}\,\mathrm{d}\theta = \int_{0}^{\pi/2} \frac{4\sin\theta}{\bigl(1+\cos\theta\bigr)^2}\,\mathrm{d}\theta = 2,$$
+where the integral is evaluated by the substitution $u = 1+\cos\theta$. Thus,
+$$\eta_{\text{projection}} = 2,$$
 which we adopt as the stereographic projection efficiency factor.
 
 This factor measures how many 4D electromagnetic modes "fit" into the space formerly occupied by one mode in the higher-dimensional geometry—a **mode dilution factor** due to the loss of internal dimensions.
 
 **Combined Factor:**
-$$2\phi + \frac{4}{\pi} \approx 3.236068 + 1.273240 \approx 4.509308 \approx 4.509$$
+$$2\phi + 2 \approx 3.236068 + 2.000000 \approx 5.236068 \approx 5.236$$
 
-Here the intermediate quantities are shown to six decimal places, while all subsequent estimates (including $Z_{\text{eff}}$) use the rounded combined factor $2\phi + 4/\pi \approx 4.509$ for numerical consistency in this manuscript.
+Here the intermediate quantities are shown to six decimal places, while all subsequent estimates (including $Z_{\text{eff}}$) use the rounded combined factor $2\phi + 2 \approx 5.236$ for numerical consistency in this manuscript.
 
 This represents the **total geometric impedance** experienced by electromagnetic signals propagating through the substrate's topology, combining:
 - **Lateral impedance** ($2\phi$): How flux spreads across the Hopf fiber
