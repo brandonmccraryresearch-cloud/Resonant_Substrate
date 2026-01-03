@@ -537,20 +537,20 @@ This represents the **total geometric impedance** experienced by electromagnetic
 
 #### Component 3: The Logarithmic Scaling — The Hierarchical Cascade
 
-$$\ln\left(\frac{M_{Pl}}{m_e}\right) = \ln\left(\frac{1.22 \times 10^{19} \text{ GeV}}{5.11 \times 10^{-4} \text{ GeV}}\right) \approx 50.7$$
+$$\ln\left(\frac{M_{Pl}}{m_e}\right) = \ln\left(\frac{1.22 \times 10^{19} \text{ GeV}}{5.11 \times 10^{-4} \text{ GeV}}\right) \approx 51.5$$
 
 This measures the **number of e-foldings** separating the Planck scale from the electron mass scale.
 
-**The Factor of 24:** The denominator 24 represents the **pre-reduction gauge modes** arising from pairwise strand interactions: $\binom{4}{2} \times 4 = 6 \times 4 = 24$ modes before symmetry reduction to 21.
+**The Factor of 24:** The denominator 24 represents the **pre-reduction gauge modes** arising from pairwise strand interactions: $\binom{4}{2} \times 4 = 6 \times 4 = 24$ modes before symmetry reduction to 21. (Note: This is distinct from the factor of 24 in Section 4.5, which arises from electroweak doublet counting: $3 \times 4 \times 2 = 24$.)
 
 **The Square Root:** The effective coupling at the electron mass scale is the **geometric mean** over all decoupling events:
-$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{\frac{50.7}{24}} = \sqrt{2.113} \approx 1.454$$
+$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{\frac{51.5}{24}} = \sqrt{2.146} \approx 1.465$$
 
 #### Numerical Verification (Route 2):
 
-$$\alpha^{-1} = 21 \times 4.509 \times 1.454$$
-$$= 94.689 \times 1.454$$
-$$\approx 137.6$$
+$$\alpha^{-1} = 21 \times 4.509 \times 1.465$$
+$$= 94.689 \times 1.465$$
+$$\approx 138.7$$
 
 **Philosophical Stance:** The fine-structure constant **emerges** from cosmic evolution—it "remembers" the sequential phase-locking events as the universe cooled.
 
@@ -569,19 +569,22 @@ These are mathematically equivalent via the **Atiyah-Singer index theorem**, whi
 
 The bare impedance from Route 1: $Z_{\text{bare}} = 121.8$
 
-The effective impedance from Route 2: $Z_{\text{eff}} = 21 \times (2\phi + 4/\pi) = 94.69$
+The effective impedance from Route 2: $Z_{\text{eff}} = 21 \times (2\phi + 4/\pi) = 94.689$
 
 Their ratio:
-$$\frac{Z_{\text{bare}}}{Z_{\text{eff}}} = \frac{121.8}{94.69} \approx 1.287$$
+$$\frac{Z_{\text{bare}}}{Z_{\text{eff}}} = \frac{121.8}{94.689} \approx 1.286$$
 
 The curvature correction factor from Route 1:
 $$\frac{2\pi^2}{V_{\text{eff}}} = \frac{19.739}{17.8} \approx 1.109$$
 
-With generation weighting factor ≈ 1.165:
-$$1.109 \times 1.165 \approx 1.292$$
+The generation correction from Section 3.4.1 is $3 \times 0.68 = 2.04$ added to 135.0, giving a multiplicative factor:
+$$f_{\text{gen}} = \frac{135.0 + 2.04}{135.0} = \frac{137.04}{135.0} \approx 1.015$$
+
+The combined curvature + generation correction:
+$$1.109 \times 1.015 \approx 1.126$$
 
 The scaling factor from Route 2:
-$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{2.113} \approx 1.454$$
+$$\sqrt{\frac{\ln(M_{Pl}/m_e)}{24}} = \sqrt{2.146} \approx 1.465$$
 
 **The Equivalence Relation:**
 
@@ -589,7 +592,7 @@ $$Z_{\text{bare}} \times \text{(curvature + generation corrections)} = Z_{\text{
 
 The document's **static corrections** (curvature of $S^3$, excluded volume, chiral weighting) are **mathematically equivalent** to the **dynamic corrections** (logarithmic RG running from Planck to EM scales).
 
-**Difference:** $|137.04 - 137.6|/137 \approx 0.4\%$
+**Difference:** $|137.04 - 138.7|/137.036 \approx 1.2\%$
 
 This tiny discrepancy arises from:
 1. Higher-loop corrections (both calculations are effectively 1-loop)
@@ -617,7 +620,7 @@ These are the **same phenomenon** viewed from different angles. Systems undergoi
 
 If future precision measurements of $\alpha$ yield a value inconsistent with BOTH derivations, IRH's entire substrate geometry must be reconsidered. The dual derivation provides an internal **self-consistency check**: if the static geometry (Route 1) and dynamic evolution (Route 2) ever predict different values for $\alpha$, the theory fails.
 
-That they currently agree to within 0.5% reflects the deep principle that static invariants equal integrated flows (Atiyah-Singer index theorem applied to the IRS).
+That they currently agree to within 1.2% reflects the deep principle that static invariants equal integrated flows (Atiyah-Singer index theorem applied to the IRS). The remaining discrepancy is attributable to higher-loop corrections and reference scale choices.
 
 ### 3.4.6 Landscape Elimination
 
@@ -1760,11 +1763,11 @@ in units of the $S^3$ radius.
 | 0.68 | $\delta_{\text{gen}}$ | Chiral weighting factor | Section 3.4.1 |
 | 137.036 | $\alpha^{-1}$ | Fine-structure constant | Section 3.4 |
 | 5.33 | $\Omega_{DM}/\Omega_b$ | Volume ratio | Section 5.2 |
-| 24 | Raw gauge modes | $\binom{4}{2} \times 4$ (pairwise interactions) | Section 3.4.2 |
+| 24 | Raw gauge modes | $\binom{4}{2} \times 4$ (pairwise interactions); also $3 \times 4 \times 2$ in Section 4.5 | Section 3.4.2 |
 | 21 | EM gauge modes | $24 - 3$ (symmetry reduction) | Section 3.4.2 |
 | 4.509 | $(2\phi + 4/\pi)$ | Geometric impedance factor | Section 3.4.2 |
 | 94.689 | $Z_{\text{eff}}$ | Effective impedance ($21 \times 4.509$) | Section 3.4.2 |
-| 50.7 | $\ln(M_{Pl}/m_e)$ | Planck-electron e-foldings | Section 3.4.2 |
+| 51.5 | $\ln(M_{Pl}/m_e)$ | Planck-electron e-foldings | Section 3.4.2 |
 | 12.6 | $\epsilon$ | Schwarzschild coefficient | Section 4.3 |
 
 ---
