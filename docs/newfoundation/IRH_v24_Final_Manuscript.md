@@ -567,8 +567,9 @@ $$\approx 138.72$$
 
 ### 3.4.3 Numerical Comparison: Two Routes to α
 
-**Theorem 3.3 (α-Correspondence):** The topological-static (Route 1) and expansion-historical (Route 2) derivations yield numerically similar results for $\alpha^{-1}$, suggesting a deep conceptual duality between timeless topology and integrated history. This correspondence, while not a strict mathematical equivalence at the current level of approximation, reflects the general principles of renormalization group (RG) flow connecting geometric and dynamical descriptions of gauge couplings.
+**Theorem 3.3 (α-Duality / α-Correspondence):** The topological-static (Route 1) and expansion-historical (Route 2) derivations yield numerically similar results for $\alpha^{-1}$, suggesting a deep conceptual duality between timeless topology and integrated history. This correspondence, while not a strict mathematical equivalence at the current level of approximation, reflects the general principles of renormalization group (RG) flow connecting geometric and dynamical descriptions of gauge couplings.
 
+In this manuscript, we use the terms *α-Duality* and *α-Correspondence* synonymously to denote this relationship between the two routes to $\alpha$.
 **Statement:** For any gauge theory evolving from scale $\Lambda_{UV}$ to $\Lambda_{IR}$ via RG flow, the effective coupling at $\Lambda_{IR}$ can be expressed in two complementary frameworks:
 
 1. **Wilsonian Integration:** A path integral over all field configurations between scales
