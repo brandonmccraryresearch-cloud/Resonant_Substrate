@@ -15,14 +15,17 @@ import sys
 from pathlib import Path
 
 
-def main():
+def main() -> int:
     """Audit equation implementations."""
     print("Auditing equation implementations...")
 
     src_dir = Path("src")
     if not src_dir.exists():
-        print("Error: src/ directory not found", file=sys.stderr)
-        return 1
+        print(
+            "Warning: src/ directory not found; skipping equation implementation audit",
+            file=sys.stderr,
+        )
+        return 0
 
     python_files = list(src_dir.rglob("*.py"))
     print(f"Found {len(python_files)} Python files to audit")

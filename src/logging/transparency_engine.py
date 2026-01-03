@@ -30,7 +30,7 @@ import numpy as np
 @dataclass
 class ProvenanceInfo:
     """Complete provenance information for a computation."""
-    
+
     manuscript_section: str
     equation_number: Optional[str] = None
     formula_latex: Optional[str] = None
@@ -46,7 +46,7 @@ class ProvenanceInfo:
 @dataclass
 class ValidationInfo:
     """Validation checks performed on computed value."""
-    
+
     dimensional_consistency: bool = True
     known_limits_checked: List[str] = field(default_factory=list)
     error_bounds_computed: bool = False
@@ -60,7 +60,7 @@ class ValidationInfo:
 @dataclass
 class ComputationRecord:
     """Complete record of a single computation."""
-    
+
     name: str
     value: Optional[Union[float, complex, np.ndarray]]
     units: Optional[str] = None
@@ -135,7 +135,7 @@ class TransparencyEngine:
     ----------
     IRH v24.0, Section 8.3: Computational Transparency Requirements
     """
-    
+
     def __init__(self, log_file: Optional[Path] = None, verbose: bool = False):
         """
         Initialize TransparencyEngine.
@@ -235,7 +235,7 @@ class TransparencyEngine:
 
 class ComputationContext:
     """Context manager for a single transparent computation."""
-    
+
     def __init__(self, engine: TransparencyEngine, name: str):
         self.engine = engine
         self.name = name
