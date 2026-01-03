@@ -15,14 +15,14 @@ import sys
 from pathlib import Path
 
 
-def main():
+def main() -> int:
     """Detect circular reasoning in derivations."""
     print("Detecting circular reasoning...")
     
     src_dir = Path('src')
     if not src_dir.exists():
         print("Warning: src/ directory not found")
-        return 0
+        return 1
     
     python_files = list(src_dir.rglob('*.py'))
     print(f"Found {len(python_files)} Python files to analyze")
